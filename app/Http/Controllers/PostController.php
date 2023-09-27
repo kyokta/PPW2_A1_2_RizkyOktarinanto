@@ -49,7 +49,7 @@ class PostController extends Controller
      * @param  mixed $request
      * @return RedirectResponse
      */
-    public function store($request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         //validate form
         $this->validate($request, [
@@ -161,7 +161,7 @@ class PostController extends Controller
     public function destroy($post): RedirectResponse
     {
         //get post by ID
-        $post = Post::findOrFail();
+        $post = Post::findOrFail($request->id);
 
         //delete image
         Storage::delete('public/posts/'. $post->image);
